@@ -1,41 +1,32 @@
-baseURL = "https://mr-lk-lf.github.io/web/"
-title = "lowkey lofison"
+baseURL = "https://rmandevs.github.io/web/"
+title = "RMN Devs"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 disableKinds = ["taxonomy", "term"]
-paginate = 3
-
-
+[pagination]
+  pagerSize = 6
 [languages]
   [languages.en]
-    languageName = "English"
-    languageCode = "en"
+    label = "English"
+    locale = "en"
     contentDir = "content/en"
     weight = 1
     [languages.en.params]
-      tagline = "We build for artists, devs and anyone who wants fair tools and content."
-      lost = ["404: not found", "decoding the signal", "nothing is lost", "try cd ~"]
+      tagline = "Small tools, agent skills and design systems. Built with personality by RMN Devs."
   [languages.es]
-    languageName = "Español"
-    languageCode = "es"
+    label = "Español"
+    locale = "es"
     contentDir = "content/es"
     weight = 2
     [languages.es.params]
-      tagline = "Construimos para artistas, devs y para quienes quieren herramientas y contenido justos."
-      lost = ["404: no encontrado", "decodificando la señal", "nada se pierde", "prueba cd ~"]
-
+      tagline = "Herramientas, skills para agentes y sistemas de diseño. Creados con personalidad por RMN Devs."
 [params]
-  github = "https://github.com/mr-lk-lf"
+  github = "https://github.com/rmandevs"
   lofisons = "https://lofisons.com"
-  x = "https://x.com/lowkey_lofison"
-  youtube = "https://www.youtube.com/@lowkey_lofison"
-
 [markup.goldmark.renderer]
   unsafe = false
-
 [markup.highlight]
   noClasses = false
-
 [outputs]
   home = ["HTML", "RSS"]

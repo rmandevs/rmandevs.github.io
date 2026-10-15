@@ -1,7 +1,7 @@
 ---
 title: "vigia"
 date: 2026-09-22
-repo: "mr-lk-lf/vigia"
+repo: "rmandevs/vigia"
 language: "TypeScript"
 license: "MIT"
 summary: "Moderating live-stream chat in real time (ES/EN)."

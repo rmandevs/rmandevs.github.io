@@ -1,9 +1,1 @@
-{{ define "main" }}
-<article class="blk">
-  <p class="cmdline"><span class="ps" aria-hidden="true">$</span><span class="cmd">cat</span> <span class="arg">{{ .File.ContentBaseName }}.md</span></p>
-  <h1 class="title" data-decode>{{ .Title }}</h1>
-  <p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "2006-01-02" }}</time></p>
-  <div class="prose" style="margin-top:20px">{{ .Content }}</div>
-  <p class="back"><a href="{{ (site.GetPage "/blog").RelPermalink }}">{{ i18n "back" }}</a></p>
-</article>
-{{ end }}
+{{ define "main" }}<article class="wrap article-page"><a class="back-link" href="{{ (site.GetPage "/blog").RelPermalink }}">← {{ i18n "allNotes" }}</a><p class="eyebrow">RMN NOTES / <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time></p><h1 class="page-title">{{ .Title }}</h1><p class="article-summary">{{ .Params.summary }}</p><div class="prose article-content">{{ .Content }}</div><span class="article-end" aria-hidden="true">✳</span></article>{{ end }}

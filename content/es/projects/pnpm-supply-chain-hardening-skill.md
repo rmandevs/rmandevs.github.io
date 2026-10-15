@@ -1,7 +1,7 @@
 ---
 title: "endurecimiento de pnpm"
 date: 2026-09-15
-repo: "mr-lk-lf/pnpm-supply-chain-hardening-skill"
+repo: "rmandevs/pnpm-supply-chain-hardening-skill"
 language: "Shell"
 license: "MIT"
 summary: "Una skill para agentes de IA que endurece las instalaciones de pnpm contra ataques a la cadena de suministro."

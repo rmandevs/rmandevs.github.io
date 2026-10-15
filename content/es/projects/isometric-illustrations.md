@@ -1,7 +1,7 @@
 ---
 title: "isometric-illustrations"
 date: 2026-10-05
-repo: "mr-lk-lf/isometric-illustrations"
+repo: "rmandevs/isometric-illustrations"
 language: "JavaScript"
 license: "Apache-2.0"
 summary: "Un motor SVG y una skill para figuras isométricas en líneas finas."

@@ -1,6 +1,1 @@
-{{ define "main" }}
-<section class="blk"><h1>{{ partial "cmd.html" (dict "cmd" "cd" "arg" "???") }}</h1><div class="out">
-  <p class="lost" data-phrases="{{ jsonify site.Params.lost }}">{{ index site.Params.lost 0 }}</p>
-  <p class="back"><a href="{{ site.Home.RelPermalink }}">cd ~</a></p>
-</div></section>
-{{ end }}
+{{ define "main" }}<section class="wrap not-found"><p class="eyebrow">ERROR / 404</p><h1 class="page-title">{{ i18n "lost" }}</h1><p>{{ i18n "lostCopy" }}</p><a class="button button-dark" href="{{ site.Home.RelPermalink }}">{{ i18n "backHome" }} <span>↗</span></a></section>{{ end }}

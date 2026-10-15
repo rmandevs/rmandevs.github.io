@@ -1,7 +1,7 @@
 ---
 title: "comfytosh"
 date: 2026-10-04
-repo: "mr-lk-lf/comfytosh"
+repo: "rmandevs/comfytosh"
 language: "CSS"
 license: "MIT"
 summary: "A cozy palette inspired by beige machines and old terminals."

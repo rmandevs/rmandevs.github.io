@@ -1,5 +1,6 @@
 ---
 title: "Hola, mundo"
+translationKey: "hello-world"
 date: 2026-10-07
 summary: "Por qué existe este blog y qué esperar aquí."
 ---

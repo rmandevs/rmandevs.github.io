@@ -1,0 +1,7 @@
+<svg  viewBox="0 0 530 224" fill="none" role="img" aria-label="RMN isometric cube" xmlns="http://www.w3.org/2000/svg">
+<path d="M100 7 192 60v105l-92 53-92-53V60Z" fill="#19191b" stroke="#19191b" stroke-width="9" stroke-linejoin="round"/>
+<g fill="#f6f1e7">
+<path transform="matrix(.92 -.53 .92 .53 21 59)" fill-rule="evenodd" d="M10 7h38q22 0 22 18 0 12-13 17l18 23H51L35 44h-5v21H10Zm20 15v10h15q6 0 6-5t-6-5Z"/>
+<path transform="matrix(.92 .53 0 1 16 67)" d="M8 8h21l14 27L57 8h21v68H58V40L43 66 28 40v36H8Z"/>
+<path transform="matrix(.92 -.53 0 1 105 118)" d="M7 4h21l29 37V4h21v68H57L28 35v37H7Z"/>
+</g><text x="227" y="157" font-family="Arial, sans-serif" font-size="115" font-weight="800" letter-spacing="-7" fill="#19191b">Devs</text></svg>

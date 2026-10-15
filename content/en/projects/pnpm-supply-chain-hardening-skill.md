@@ -1,7 +1,7 @@
 ---
 title: "pnpm supply-chain hardening"
 date: 2026-09-15
-repo: "mr-lk-lf/pnpm-supply-chain-hardening-skill"
+repo: "rmandevs/pnpm-supply-chain-hardening-skill"
 language: "Shell"
 license: "MIT"
 summary: "An AI agent skill that hardens pnpm installs against supply-chain attacks."
