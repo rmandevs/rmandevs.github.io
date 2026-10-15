@@ -1,5 +1,5 @@
 ---
-title: "endurecimiento de pnpm"
+title: "pnpm-supply-chain-hardening-skill"
 date: 2026-09-15
 repo: "rmandevs/pnpm-supply-chain-hardening-skill"
 language: "Shell"

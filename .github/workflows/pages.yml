@@ -25,6 +25,12 @@ jobs:
         uses: actions/configure-pages@v6.0.0
         with:
           enablement: true
+      - name: Prepare embedded typography
+        env:
+          TIMELESS_TITLE_WOFF2: ${{ secrets.TIMELESS_TITLE_WOFF2 }}
+          TIMELESS_TEXT_WOFF2: ${{ secrets.TIMELESS_TEXT_WOFF2 }}
+          TIMELESS_TEXT_BOLD_WOFF2: ${{ secrets.TIMELESS_TEXT_BOLD_WOFF2 }}
+        run: python3 scripts/embed_fonts.py
       - run: hugo --gc --minify --panicOnWarning --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Check generated pages, links and assets
         run: python3 scripts/check_site.py public

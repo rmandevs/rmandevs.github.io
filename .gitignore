@@ -1,3 +1,6 @@
 public/
 resources/
 .hugo_build.lock
+
+# Licensed font embedding is generated locally and during deployment.
+/assets/css/embedded-fonts.css

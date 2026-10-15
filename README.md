@@ -9,12 +9,14 @@ Personal portfolio for [@rmandevs](https://github.com/rmandevs), built with Hugo
 Install **Hugo 0.168.0** (standard edition is sufficient), then run:
 
 ```sh
+python3 scripts/embed_fonts.py --font-dir /path/to/your/licensed/woff2/fonts
 hugo server --disableFastRender
 ```
 
 Production build:
 
 ```sh
+python3 scripts/embed_fonts.py --font-dir /path/to/your/licensed/woff2/fonts
 hugo --gc --minify --panicOnWarning
 python3 scripts/check_site.py public
 ```
@@ -25,10 +27,12 @@ Content lives in `content/en/` and `content/es/`; project front matter supplies 
 
 Pushes to `main` build and deploy using `.github/workflows/pages.yml`. GitHub Pages must use **GitHub Actions** as its source. The workflow derives the deployment base URL from Pages settings, so project paths remain correct. No Node dependencies or third-party runtime services are needed.
 
-## Identity
+## Typography and presentation
 
-`static/brand/rmn-cube.svg` is the R / M / N isometric cube; `rmn-devs.svg` includes the Devs wordmark. Both use outlined Chango letters, licensed under SIL OFL 1.1. The cube and wordmark assets are retained for later use; the live portfolio currently has no cube, illustrations or top navigation bar. Their shared templates are `layouts/_partials/cube.html` and `layouts/_partials/logo.html`. Fonts are served locally with their open font licences in `static/fonts/`.
+Titles use Timeless Serif Book, article prose uses Timeless Serif Text Book (Text Bold for emphasis), and the interface uses Paper Mono Regular and SemiBold. The default theme is dark, with a compact project list, a short bio and recent notes. Project names remain identical in both languages. There are no illustrations, top navigation bar, project numbers or copyright labels.
 
-The homepage is a direct portfolio: a compact project index with text rows, a short bio and recent notes. No promotional hero, animated ticker or sales CTA.
+Paper Mono is served locally; its SIL OFL licence is in `static/fonts/PaperMono-OFL.txt`. Timeless is embedded into the final stylesheet during the build. Its files and the generated `assets/css/embedded-fonts.css` are excluded from Git history. Obtain the fonts and their licence from https://timeless.co/type. For local builds, pass a directory containing `TimelessSerif-Book.woff2`, `TimelessSerif-TextBook.woff2` and `TimelessSerif-TextBold.woff2` to `scripts/embed_fonts.py`. Pages supplies their base64 payloads through the `TIMELESS_TITLE_WOFF2`, `TIMELESS_TEXT_WOFF2` and `TIMELESS_TEXT_BOLD_WOFF2` build secrets.
 
-The site supports English and Spanish, native keyboard navigation, visible focus, and reduced-motion preferences. Project content and existing article URLs are preserved from the previous portfolio.
+The earlier cube assets remain stored for later use, with their Chango OFL notice, and are not rendered on the live website.
+
+The site supports English and Spanish, native keyboard navigation and visible focus. Existing article and project URLs are preserved.
