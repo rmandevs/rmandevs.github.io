@@ -13,14 +13,14 @@ disableKinds = ["taxonomy", "term"]
     contentDir = "content/en"
     weight = 1
     [languages.en.params]
-      tagline = "Small tools, agent skills and design systems. Built with personality by RMN Devs."
+      tagline = "Armando’s portfolio: open-source tools, agent skills and visual experiments."
   [languages.es]
     label = "Español"
     locale = "es"
     contentDir = "content/es"
     weight = 2
     [languages.es.params]
-      tagline = "Herramientas, skills para agentes y sistemas de diseño. Creados con personalidad por RMN Devs."
+      tagline = "Portafolio de Armando: herramientas open source, skills para agentes y experimentos visuales."
 [params]
   github = "https://github.com/rmandevs"
   lofisons = "https://lofisons.com"

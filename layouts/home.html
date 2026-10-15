@@ -1,26 +1,27 @@
 {{ define "main" }}
-<section class="hero wrap">
-<div class="hero-top"><p class="eyebrow"><span class="live-dot"></span> {{ i18n "heroEyebrow" }}</p><span class="edition">{{ i18n "edition" }} 001 — 2026</span></div>
-<div class="hero-body">
-<div class="hero-copy"><h1><span>{{ i18n "heroSmall" }}</span><span>{{ i18n "heroTools" }}<svg class="title-spark" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0 60 34 91 15 70 44 100 50 68 60 86 91 57 71 50 100 40 68 9 86 29 57 0 50 34 40 15 9 44 29Z" fill="currentColor"/></svg></span><span class="extruded">{{ i18n "heroBig" }}</span></h1>
-<div class="hero-intro"><p>{{ i18n "heroIntro" }}</p><a class="button button-dark" href="#work">{{ i18n "explore" }}<span>↘</span></a></div>
+<div class="wrap portfolio-page">
+  <header class="portfolio-heading">
+    <h1>Armando<span class="name-dot">.</span></h1>
+    <p class="eyebrow"><a href="{{ site.Params.github }}">@rmandevs ↗</a></p>
+  </header>
+  <div class="portfolio-columns">
+    <section class="project-index-section" id="work">
+      <div class="index-heading"><h2>{{ i18n "projects" }}</h2><span>05</span></div>
+      {{ partial "project-index.html" . }}
+    </section>
+    <aside class="portfolio-sidebar">
+      <section class="bio-section" id="about">
+        <div class="index-heading"><h2>{{ i18n "about" }}</h2></div>
+        <div class="prose">{{ .Content }}</div>
+        <a class="text-link sidebar-link" href="{{ site.Params.github }}">GitHub ↗</a>
+      </section>
+      <section class="notes-section">
+        <div class="index-heading"><h2>{{ i18n "journal" }}</h2><a class="text-link" href="{{ (site.GetPage "/blog").RelPermalink }}" aria-label="{{ i18n "allNotes" }}">↗</a></div>
+        {{ range first 3 (where site.RegularPages "Section" "blog").ByDate.Reverse }}
+        <a class="compact-note" href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time><h3>{{ .Title }} <span>↗</span></h3><p>{{ .Params.summary }}</p></a>
+        {{ end }}
+      </section>
+    </aside>
+  </div>
 </div>
-<div class="hero-art" aria-hidden="true">
-<svg class="orbit" viewBox="0 0 550 580"><ellipse cx="268" cy="305" rx="250" ry="129" transform="rotate(-35 268 305)" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 7"/><path d="m470 114 9 30 30 9-30 9-9 30-9-30-30-9 30-9Z" fill="currentColor"/></svg>
-<div class="cube-stage"><span class="cube-shadow"></span><div class="hero-cube">{{ partial "cube.html" . }}</div></div>
-<div class="code-key"><span>&lt;/&gt;</span></div>
-<div class="personality-sticker">{{ i18n "sticker" }}<span>✳</span></div>
-<span class="art-coordinate">RMN—03 / X: 24 Y: 86</span><span class="little-star">✳</span>
-</div></div>
-<div class="hero-bottom"><span>{{ i18n "heroFooter" }}</span><span>{{ i18n "scroll" }} <span class="down-arrow">↓</span></span></div>
-</section>
-<div class="ticker" aria-hidden="true"><div>{{ range seq 4 }}<span>OPEN SOURCE</span><b>✳</b><span>{{ i18n "tickerIdeas" }}</span><b>✳</b><span>{{ i18n "tickerPersonality" }}</span><b>✳</b>{{ end }}</div></div>
-<section class="work-section wrap" id="work">
-<div class="section-label"><span>01 / {{ i18n "selectedWork" }}</span><span>(05)</span></div>
-<div class="section-heading"><h2>{{ i18n "workTitle" }}<span class="serif-note">{{ i18n "workNote" }}</span></h2><p>{{ i18n "workIntro" }}</p></div>
-{{ partial "projects.html" . }}
-<div class="work-outro"><span>↳ {{ i18n "workOutro" }}</span><a class="text-link" href="{{ site.Params.github }}">{{ i18n "allOnGithub" }} ↗</a></div>
-</section>
-<section class="about-section" id="about"><div class="wrap about-grid"><div><p class="eyebrow">02 / {{ i18n "behind" }}</p><h2>{{ i18n "aboutTitle1" }}<br><span>{{ i18n "aboutTitle2" }}</span></h2><div class="about-stamp" aria-hidden="true">LESS BORING<br>MORE BUILDING <span>↗</span></div></div><div class="about-copy"><div class="about-mini-logo">{{ partial "cube.html" . }}<span>{{ i18n "greeting" }}<br><b>@rmandevs</b></span></div><div class="prose">{{ .Content }}</div><p>{{ i18n "aboutMore" }}</p><a class="text-link" href="{{ site.Params.github }}">{{ i18n "meetGithub" }} ↗</a><div class="principles"><span>01 — {{ i18n "principle1" }}</span><span>02 — {{ i18n "principle2" }}</span><span>03 — {{ i18n "principle3" }}</span></div></div></div></section>
-<section class="journal-section wrap"><div class="section-label"><span>03 / {{ i18n "journal" }}</span><a class="text-link" href="{{ (site.GetPage "/blog").RelPermalink }}">{{ i18n "allNotes" }} ↗</a></div><h2>{{ i18n "journalTitle" }}<span class="tiny-spark" aria-hidden="true">✳</span></h2>{{ range first 3 (where site.RegularPages "Section" "blog").ByDate.Reverse }}<a class="note-row" href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time><div><h3>{{ .Title }}</h3><p>{{ .Params.summary }}</p></div><span class="round-arrow">↗</span></a>{{ end }}</section>
 {{ end }}
