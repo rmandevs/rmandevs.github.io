@@ -2,7 +2,6 @@
 {{ range (where site.RegularPages "Section" "projects").ByDate.Reverse }}
   <article class="project-entry project-{{ .File.ContentBaseName }}">
     <a href="{{ .RelPermalink }}" class="project-entry-link">
-      <div class="project-thumb">{{ partial "artwork.html" . }}</div>
       <div class="project-entry-copy">
         <h3>{{ .Title }} <span aria-hidden="true">↗</span></h3>
         <p>{{ .Params.summary }}</p>

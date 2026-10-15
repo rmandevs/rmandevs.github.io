@@ -27,8 +27,8 @@ Pushes to `main` build and deploy using `.github/workflows/pages.yml`. GitHub Pa
 
 ## Identity
 
-`static/brand/rmn-cube.svg` is the R / M / N isometric cube; `rmn-devs.svg` includes the Devs wordmark. Both use outlined Chango letters, licensed under SIL OFL 1.1. Their shared templates are `layouts/_partials/cube.html` and `layouts/_partials/logo.html`. Fonts are served locally with their open font licences in `static/fonts/`.
+`static/brand/rmn-cube.svg` is the R / M / N isometric cube; `rmn-devs.svg` includes the Devs wordmark. Both use outlined Chango letters, licensed under SIL OFL 1.1. The cube and wordmark assets are retained for later use; the live portfolio currently has no cube, illustrations or top navigation bar. Their shared templates are `layouts/_partials/cube.html` and `layouts/_partials/logo.html`. Fonts are served locally with their open font licences in `static/fonts/`.
 
-The homepage is a direct portfolio: a compact project index with illustrated thumbnails, a short bio and recent notes. No promotional hero, animated ticker or sales CTA.
+The homepage is a direct portfolio: a compact project index with text rows, a short bio and recent notes. No promotional hero, animated ticker or sales CTA.
 
 The site supports English and Spanish, native keyboard navigation, visible focus, and reduced-motion preferences. Project content and existing article URLs are preserved from the previous portfolio.

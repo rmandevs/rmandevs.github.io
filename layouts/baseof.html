@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f6f1e7">
+<link rel="icon" href="data:,">
 <title>{{ if .IsHome }}{{ site.Title }} — {{ i18n "pageTitle" }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ .Params.summary | default site.Params.tagline }}">
 <link rel="canonical" href="{{ .Permalink }}">
@@ -11,7 +12,7 @@
 <meta property="og:description" content="{{ .Params.summary | default site.Params.tagline }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<link rel="icon" type="image/svg+xml" href="{{ "brand/rmn-cube.svg" | relURL }}">
+
 <link rel="preload" href="{{ "fonts/Chango-Regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 {{ with site.Home.OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="RMN Devs" href="{{ .RelPermalink }}">{{ end }}
 {{ $css := resources.Get "css/main.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">
@@ -19,15 +20,7 @@
 </head>
 <body>
 <a class="skip" href="#main">{{ i18n "skip" }}</a>
-<header class="site-header wrap">
-<a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="RMN Devs — {{ i18n "home" }}">{{ partial "logo.html" . }}</a>
-<nav class="main-nav" aria-label="{{ i18n "navigation" }}">
-<a {{ if eq .Section "projects" }}aria-current="page"{{ end }} href="{{ (site.GetPage "/projects").RelPermalink }}">{{ i18n "projects" }}<span class="nav-count">05</span></a>
-<a {{ if eq .Section "blog" }}aria-current="page"{{ end }} href="{{ (site.GetPage "/blog").RelPermalink }}">{{ i18n "journal" }}</a>
 
-</nav>
-<div class="header-end"><nav class="languages" aria-label="{{ i18n "language" }}">{{ range .AllTranslations }}<a href="{{ .RelPermalink }}" lang="{{ .Language.Lang }}" hreflang="{{ .Language.Lang }}" {{ if eq $.Language.Lang .Language.Lang }}aria-current="true"{{ end }}>{{ upper .Language.Lang }}</a>{{ end }}</nav><a class="github-top" href="{{ site.Params.github }}" aria-label="GitHub @rmandevs">GitHub <span>↗</span></a></div>
-</header>
 <main id="main">{{ block "main" . }}{{ end }}</main>
 {{ partial "footer.html" . }}
 </body></html>
