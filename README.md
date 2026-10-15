@@ -29,7 +29,7 @@ Pushes to `main` build and deploy using `.github/workflows/pages.yml`. GitHub Pa
 
 ## Typography and presentation
 
-Titles use Timeless Serif Book, article prose uses Timeless Serif Text Book (Text Bold for emphasis), and the interface uses Paper Mono Regular and SemiBold. The default theme is dark, with a compact project list, a short bio and recent notes. Project names remain identical in both languages. There are no illustrations, top navigation bar, project numbers or copyright labels.
+On the homepage, only the name uses Timeless Serif Book; all other headings and interface text use Paper Mono Regular and SemiBold. Blog titles use Timeless Serif Book, and article prose uses Timeless Serif Text Book (Text Bold for emphasis). The default theme is dark, with a compact project list, a short bio and recent notes. Project names remain identical in both languages. There are no illustrations, top navigation bar, project numbers or copyright labels.
 
 Paper Mono is served locally; its SIL OFL licence is in `static/fonts/PaperMono-OFL.txt`. Timeless is embedded into the final stylesheet during the build. Its files and the generated `assets/css/embedded-fonts.css` are excluded from Git history. Obtain the fonts and their licence from https://timeless.co/type. For local builds, pass a directory containing `TimelessSerif-Book.woff2`, `TimelessSerif-TextBook.woff2` and `TimelessSerif-TextBold.woff2` to `scripts/embed_fonts.py`. Pages supplies their base64 payloads through the `TIMELESS_TITLE_WOFF2`, `TIMELESS_TEXT_WOFF2` and `TIMELESS_TEXT_BOLD_WOFF2` build secrets.
 
