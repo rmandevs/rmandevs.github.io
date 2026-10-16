@@ -34,12 +34,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <a class="skip" href="#main">Skip to content</a>
     <div class="site-shell">
       <header class="utility-bar">
-        <a class="home-link" href="/" aria-label="Armando, home"><span class="status-dot" aria-hidden="true"></span>rmandevs <span class="quiet">/ personal space</span></a>
         <button class="theme-toggle" hidden type="button" aria-label="Switch to light theme"><Icon name="sun" /></button>
       </header>
       <main id="main"><slot /></main>
       <footer class="site-footer">
-        <p class="footer-note">Built with a bit of personality.</p>
         <nav aria-label="Elsewhere">
           <a href={site.github}>GitHub <span aria-hidden="true">↗</span></a>
           {site.x && <a href={site.x}>X <span aria-hidden="true">↗</span></a>}
