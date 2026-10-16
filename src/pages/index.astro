@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../config';
+import { getProjects, getPosts, dateLabel } from '../lib/content';
+const projects = await getProjects();
+const posts = await getPosts();
+const filters = [{ key: 'all', name: 'All' }, { key: 'Tool', name: 'Tools' }, { key: 'Agent skill', name: 'Skills' }, { key: 'Design system', name: 'Design' }];
+---
+<Layout>
+  <section class="intro" aria-labelledby="name">
+    <p class="eyebrow">Independent developer & curious builder</p>
+    <h1 id="name">Armando<span class="title-period">.</span></h1>
+    <a class="handle" href={site.github}>{site.handle} <span aria-hidden="true">↗</span></a>
+  </section>
+  <nav class="section-nav" aria-label="On this page">
+    <a href="#projects"><span class="nav-mark gold" aria-hidden="true">⌘</span> Projects <span class="nav-count">{String(projects.length).padStart(2, '0')}</span></a>
+    <a href="#notebook"><span class="nav-mark lavender" aria-hidden="true">▤</span> Notebook <span class="nav-count">{String(posts.length).padStart(2, '0')}</span></a>
+    <a href="#about"><span class="nav-mark mint" aria-hidden="true">◌</span> About</a>
+    <a class="nav-elsewhere" href={site.lofisons}>lofisons <span aria-hidden="true">↗</span></a>
+  </nav>
+  <div class="workspace-grid">
+    <section id="projects" class="projects-section" aria-labelledby="projects-title">
+      <div class="section-heading"><h2 id="projects-title"><Icon name="folder" />Projects</h2><span class="section-caption">Selected open source</span></div>
+      <div class="filter-bar" role="group" aria-label="Filter projects" hidden>
+        {filters.map(filter => <button type="button" data-filter={filter.key} aria-pressed={filter.key === 'all'}>{filter.name}</button>)}
+        <span class="filter-count" aria-live="polite">{projects.length} projects</span>
+      </div>
+      <ul class="project-list">
+        {projects.map(project => <li data-category={project.data.category}>
+          <a class="project-row" href={`/projects/${project.id}/`}>
+            <div class="project-topline"><span class="project-name">{project.data.title}</span><Icon name="arrow" /></div>
+            <p>{project.data.summary}</p>
+            <div class="project-meta"><span class="language"><span class:list={['language-dot', project.data.language.toLowerCase()]} aria-hidden="true"></span>{project.data.language}</span><span class="meta-separator" aria-hidden="true">/</span><span>{project.data.category}</span><span class="license">{project.data.license}</span></div>
+          </a>
+        </li>)}
+      </ul>
+      <a class="subtle-link collection-link" href={site.github}>All repositories <span aria-hidden="true">↗</span></a>
+    </section>
+    <section id="notebook" class="notebook-section" aria-labelledby="notebook-title">
+      <div class="section-heading"><h2 id="notebook-title"><Icon name="notebook" />Notebook</h2><a class="subtle-link" href="/blog/" aria-label="Open the notebook">↗</a></div>
+      <p class="section-intro">Things I build, things I learn,<br />and the occasional detour.</p>
+      {posts.length ? <div class="note-list">{posts.slice(0, 4).map(post => <a class="note-card" href={`/blog/${post.id}/`}>
+        <div class="note-meta"><time datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time><span class="tag">{post.data.type}</span></div>
+        <h3>{post.data.title}<span aria-hidden="true">↗</span></h3>
+        <p>{post.data.summary}</p>
+      </a>)}</div> : <div class="notebook-empty"><span class="empty-glyph" aria-hidden="true">[ ... ]</span><h3>A little room for ideas.</h3><p>The first notes are on their way.</p></div>}
+      <a class="subtle-link notebook-more" href="/blog/">Open notebook <span aria-hidden="true">→</span></a>
+    </section>
+  </div>
+  <section id="about" class="about-section" aria-labelledby="about-title">
+    <div class="section-heading"><h2 id="about-title"><span class="about-symbol" aria-hidden="true">◌</span>About</h2><span class="section-caption">The person behind the projects</span></div>
+    <div class="about-grid">
+      <p class="about-lead">I build small tools, agent skills and design systems, and I like giving them a bit of <span>personality.</span></p>
+      <div class="about-detail"><p>Founder of <a href={site.lofisons}>lofisons <span aria-hidden="true">↗</span></a>.</p><p>This is my little corner of the internet: a place for useful experiments and notes along the way.</p><a class="subtle-link" href={site.github}>Find me on GitHub <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </section>
+</Layout>
+<script>
+  const filters = document.querySelector<HTMLElement>('.filter-bar');
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const rows = document.querySelectorAll<HTMLLIElement>('.project-list > li');
+  const count = document.querySelector('.filter-count');
+  if (filters) filters.hidden = false;
+  buttons.forEach(button => button.addEventListener('click', () => {
+    const category = button.dataset.filter;
+    buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+    let visible = 0;
+    rows.forEach(row => { row.hidden = category !== 'all' && row.dataset.category !== category; if (!row.hidden) visible++; });
+    if (count) count.textContent = `${visible} ${visible === 1 ? 'project' : 'projects'}`;
+  }));
+</script>

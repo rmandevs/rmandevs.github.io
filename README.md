@@ -1,38 +1,35 @@
-# RMN Devs
+# Armando / @rmandevs
 
-Personal portfolio for [@rmandevs](https://github.com/rmandevs), built with Hugo.
-
-**Live:** https://rmandevs.github.io/web/ · [Español](https://rmandevs.github.io/web/es/)
+Personal portfolio and notebook, built with Astro and deployed to [rmandevs.github.io](https://rmandevs.github.io/).
 
 ## Development
 
-Install **Hugo 0.168.0** (standard edition is sufficient), then run:
+Use Node 22.22+ (CI uses Node 24) and pnpm 12.9.1.
 
 ```sh
-python3 scripts/embed_fonts.py --font-dir /path/to/your/licensed/woff2/fonts
-hugo server --disableFastRender
+pnpm install
+pnpm dev
 ```
 
-Production build:
+Before publishing:
 
 ```sh
-python3 scripts/embed_fonts.py --font-dir /path/to/your/licensed/woff2/fonts
-hugo --gc --minify --panicOnWarning
-python3 scripts/check_site.py public
+pnpm check
+pnpm build
+pnpm test
 ```
 
-Content lives in `content/en/` and `content/es/`; project front matter supplies its title, summary, repository, language, licence and date. Edit both translations when changing a project. Shared templates live in `layouts/`, design in `assets/css/main.css`, and original vector artwork in `layouts/_partials/`.
+## Content
 
-## Publishing
+- Projects: `src/content/projects/*.md`. Required properties: title, summary, date, repo (`owner/name`), language, license and category (`Tool`, `Agent skill`, `Design system`).
+- Notebook: `src/content/blog/*.md`. Properties: title, summary, date, optional updated date, draft, type (`Note`, `Article`, `Experiment`) and tags. The default is **draft**; set `draft: false` to publish. Drafts are excluded from pages, RSS and the sitemap.
+- Profile and social links: `src/config.ts`.
+- Appearance: `src/styles/global.css`. Paper Mono is served locally under its included SIL OFL licence.
 
-Pushes to `main` build and deploy using `.github/workflows/pages.yml`. GitHub Pages must use **GitHub Actions** as its source. The workflow derives the deployment base URL from Pages settings, so project paths remain correct. No Node dependencies or third-party runtime services are needed.
+The original Hello, world article is retained as a draft because it had been removed from the Notion notebook. The public portfolio uses English only.
 
-## Typography and presentation
+## GitHub Pages
 
-On the homepage, only the name uses Timeless Serif Book; all other headings and interface text use Paper Mono Regular and SemiBold. Blog titles use Timeless Serif Book, and article prose uses Timeless Serif Text Book (Text Bold for emphasis). The default theme is dark, with a compact project list, a short bio and recent notes. Project names remain identical in both languages. There are no illustrations, top navigation bar, project numbers or copyright labels.
+The repository must be named **rmandevs.github.io** for the root URL. In Settings → Pages, choose **GitHub Actions** as the source. Pushes to main validate and deploy; pull requests run validation only. No paid hosting, runtime API keys or font secrets are needed.
 
-Paper Mono is served locally; its SIL OFL licence is in `static/fonts/PaperMono-OFL.txt`. Timeless is embedded into the final stylesheet during the build. Its files and the generated `assets/css/embedded-fonts.css` are excluded from Git history. Obtain the fonts and their licence from https://timeless.co/type. For local builds, pass a directory containing `TimelessSerif-Book.woff2`, `TimelessSerif-TextBook.woff2` and `TimelessSerif-TextBold.woff2` to `scripts/embed_fonts.py`. Pages supplies their base64 payloads through the `TIMELESS_TITLE_WOFF2`, `TIMELESS_TEXT_WOFF2` and `TIMELESS_TEXT_BOLD_WOFF2` build secrets.
-
-The earlier cube assets remain stored for later use, with their Chango OFL notice, and are not rendered on the live website.
-
-The site supports English and Spanish, native keyboard navigation and visible focus. Existing article and project URLs are preserved.
+Astro's `site` is `https://rmandevs.github.io`; no `/web` base path is configured. Project permalinks are `/projects/<slug>/`; notebook permalinks use `/blog/<slug>/`.

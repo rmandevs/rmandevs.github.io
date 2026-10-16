@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getProjects, dateLabel } from '../../lib/content';
+export async function getStaticPaths() {
+  return (await getProjects()).map(project => ({ params: { id: project.id }, props: { project } }));
+}
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+<Layout title={project.data.title} description={project.data.summary}>
+  <article class="article-page">
+    <a class="back-link" href="/#projects">← Back to projects</a>
+    <header class="article-header"><p class="eyebrow">{project.data.category}</p><h1>{project.data.title}</h1><p class="article-summary">{project.data.summary}</p></header>
+    <dl class="property-list"><div><dt>Language</dt><dd>{project.data.language}</dd></div><div><dt>License</dt><dd>{project.data.license}</dd></div><div><dt>Published</dt><dd><time datetime={project.data.date.toISOString()}>{dateLabel(project.data.date)}</time></dd></div></dl>
+    <div class="prose"><Content /></div>
+    <a class="source-link" href={`https://github.com/${project.data.repo}`}>View on GitHub <span aria-hidden="true">↗</span></a>
+  </article>
+</Layout>
