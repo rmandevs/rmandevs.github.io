@@ -39,7 +39,7 @@ const filters = [{ key: 'all', name: 'All' }, { key: 'Tool', name: 'Tools' }, { 
     </section>
     <section id="notebook" class="notebook-section" aria-labelledby="notebook-title">
       <div class="section-heading"><h2 id="notebook-title"><Icon name="notebook" />Notebook</h2><a class="subtle-link" href="/blog/" aria-label="Open the notebook">↗</a></div>
-      <p class="section-intro">Things I build, things I learn,<br />and the occasional detour.</p>
+      <p class="section-intro">random thoughts</p>
       {posts.length ? <div class="note-list">{posts.slice(0, 4).map(post => <a class="note-card" href={`/blog/${post.id}/`}>
         <div class="note-meta"><time datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time><span class="tag">{post.data.type}</span></div>
         <h3>{post.data.title}<span aria-hidden="true">↗</span></h3>
