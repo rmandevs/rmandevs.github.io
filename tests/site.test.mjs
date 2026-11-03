@@ -66,5 +66,9 @@ test("every project has a content page with a repository link", async () => {
     );
     assert.ok(html.includes(`https://github.com/rmandevs/${slug}`));
     assert.ok(html.includes("View on GitHub"));
+    if (slug === "pegboard") {
+      assert.ok(html.includes("https://usepegboard.dev"));
+      assert.ok(html.includes("usepegboard.dev"));
+    }
   }
 });

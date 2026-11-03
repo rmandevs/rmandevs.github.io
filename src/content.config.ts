@@ -9,6 +9,7 @@ const projects = defineCollection({
     summary: z.string(),
     date: z.coerce.date(),
     repo: z.string().regex(/^[\w.-]+\/[\w.-]+$/),
+    website: z.url().optional(),
     language: z.string(),
     license: z.string(),
     category: z.enum(["Tool", "Agent skill", "Design system"]),

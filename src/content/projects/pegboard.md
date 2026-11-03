@@ -3,6 +3,7 @@ category: "Tool"
 title: "pegboard"
 date: 2026-11-03
 repo: "rmandevs/pegboard"
+website: "https://usepegboard.dev"
 language: "Go"
 license: "MIT"
 summary: "Configuration as Code for coding agents: declare MCPs, skills and context once, and apply them to every agent."
