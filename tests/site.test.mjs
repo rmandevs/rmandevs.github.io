@@ -51,11 +51,12 @@ test("draft blog content stays out of generated pages, RSS and sitemap", async (
   }
   await assert.rejects(access(new URL("blog/hello-world/index.html", root)));
 });
-test("all five original projects have content pages with a repository link", async () => {
+test("every project has a content page with a repository link", async () => {
   for (const slug of [
     "comfytosh",
     "isometric-illustrations",
     "lazy-c7n",
+    "pegboard",
     "pnpm-supply-chain-hardening-skill",
     "vigia",
   ]) {
