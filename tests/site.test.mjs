@@ -14,7 +14,7 @@ async function htmlFiles(dir = root) {
 }
 test("every generated internal page and asset link resolves at the site root", async () => {
   const pages = await htmlFiles();
-  assert.ok(pages.length >= 8);
+  assert.ok(pages.length >= 5);
   for (const file of pages) {
     const html = await readFile(file, "utf8");
     assert.match(html, /<html lang="en"/);
@@ -51,24 +51,33 @@ test("draft blog content stays out of generated pages, RSS and sitemap", async (
   }
   await assert.rejects(access(new URL("blog/hello-world/index.html", root)));
 });
-test("every project has a content page with a repository link", async () => {
-  for (const slug of [
-    "comfytosh",
-    "isometric-illustrations",
-    "lazy-c7n",
-    "pegboard",
-    "pnpm-supply-chain-hardening-skill",
-    "vigia",
-  ]) {
+test("the launched projects have content pages with their links", async () => {
+  const projects = [
+    {
+      slug: "pegboard",
+      links: [
+        "https://usepegboard.dev",
+        "https://github.com/rmandevs/pegboard",
+      ],
+    },
+    { slug: "lofisons", links: ["https://lofisons.com"] },
+  ];
+  for (const { slug, links } of projects) {
     const html = await readFile(
       new URL(`projects/${slug}/index.html`, root),
       "utf8",
     );
-    assert.ok(html.includes(`https://github.com/rmandevs/${slug}`));
-    assert.ok(html.includes("View on GitHub"));
-    if (slug === "pegboard") {
-      assert.ok(html.includes("https://usepegboard.dev"));
-      assert.ok(html.includes("usepegboard.dev"));
-    }
+    for (const link of links) assert.ok(html.includes(link));
+  }
+});
+test("projects that are not launched yet stay out of the site", async () => {
+  for (const slug of [
+    "comfytosh",
+    "isometric-illustrations",
+    "lazy-c7n",
+    "pnpm-supply-chain-hardening-skill",
+    "vigia",
+  ]) {
+    await assert.rejects(access(new URL(`projects/${slug}/index.html`, root)));
   }
 });

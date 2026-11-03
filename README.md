@@ -21,7 +21,7 @@ pnpm test
 
 ## Content
 
-- Projects: `src/content/projects/*.md`. Required properties: title, summary, date, repo (`owner/name`), language, license and category (`Tool`, `Agent skill`, `Design system`).
+- Projects: `src/content/projects/*.md`. Required properties: title, summary, date, language, license and category (`Tool`, `Agent skill`, `Design system`, `Studio`). Optional: repo (`owner/name`) and website.
 - Notebook: `src/content/blog/*.md`. Properties: title, summary, date, optional updated date, draft, type (`Note`, `Article`, `Experiment`) and tags. The default is **draft**; set `draft: false` to publish. Drafts are excluded from pages, RSS and the sitemap.
 - Profile and social links: `src/config.ts`.
 - Appearance: `src/styles/global.css`. Paper Mono is served locally under its included SIL OFL licence.

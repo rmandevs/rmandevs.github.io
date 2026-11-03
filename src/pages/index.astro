@@ -5,7 +5,9 @@ import { site } from '../config';
 import { getProjects, getPosts, dateLabel } from '../lib/content';
 const projects = await getProjects();
 const posts = await getPosts();
-const filters = [{ key: 'all', name: 'All' }, { key: 'Tool', name: 'Tools' }, { key: 'Agent skill', name: 'Skills' }, { key: 'Design system', name: 'Design' }];
+const categoryLabels: Record<string, string> = { Tool: 'Tools', 'Agent skill': 'Skills', 'Design system': 'Design', Studio: 'Studio' };
+const categories = [...new Set(projects.map(project => project.data.category))];
+const filters = [{ key: 'all', name: 'All' }, ...categories.map(key => ({ key, name: categoryLabels[key] ?? key }))];
 ---
 <Layout>
   <section class="intro" aria-labelledby="name">
@@ -21,7 +23,7 @@ const filters = [{ key: 'all', name: 'All' }, { key: 'Tool', name: 'Tools' }, { 
   </nav>
   <div class="workspace-grid">
     <section id="projects" class="projects-section" aria-labelledby="projects-title">
-      <div class="section-heading"><h2 id="projects-title"><Icon name="folder" />Projects</h2><span class="section-caption">Selected open source</span></div>
+      <div class="section-heading"><h2 id="projects-title"><Icon name="folder" />Projects</h2><span class="section-caption">Selected work</span></div>
       <div class="filter-bar" role="group" aria-label="Filter projects" hidden>
         {filters.map(filter => <button type="button" data-filter={filter.key} aria-pressed={filter.key === 'all'}>{filter.name}</button>)}
         <span class="filter-count" aria-live="polite">{projects.length} projects</span>

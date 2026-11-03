@@ -8,11 +8,11 @@ const projects = defineCollection({
     title: z.string(),
     summary: z.string(),
     date: z.coerce.date(),
-    repo: z.string().regex(/^[\w.-]+\/[\w.-]+$/),
+    repo: z.string().regex(/^[\w.-]+\/[\w.-]+$/).optional(),
     website: z.url().optional(),
     language: z.string(),
     license: z.string(),
-    category: z.enum(["Tool", "Agent skill", "Design system"]),
+    category: z.enum(["Tool", "Agent skill", "Design system", "Studio"]),
   }),
 });
 const blog = defineCollection({
