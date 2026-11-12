@@ -12,7 +12,12 @@ const projects = defineCollection({
     website: z.url().optional(),
     language: z.string(),
     license: z.string(),
-    category: z.enum(["Tool", "Agent skill", "Design system", "Studio"]),
+    category: z.enum(["Tool", "Theme", "Layout", "Agent skill", "Design system", "Studio"]),
+    image: z.string().startsWith("/").optional(),
+    imageAlt: z.string().optional(),
+    imageCaption: z.string().optional(),
+    imageWidth: z.number().optional(),
+    imageHeight: z.number().optional(),
   }),
 });
 const blog = defineCollection({
