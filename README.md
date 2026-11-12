@@ -24,7 +24,7 @@ pnpm test
 - Projects: `src/content/projects/*.md`. Required properties: title, summary, date, language, license and category (`Tool`, `Theme`, `Layout`, `Agent skill`, `Design system`, `Studio`). Optional: repo (`owner/name`), website, and an image (`image` as a path under `public/`, with `imageAlt`, `imageCaption`, `imageWidth` and `imageHeight`). Each project gets a doodle on its card: add one for a new slug in `src/components/Doodle.astro`, or it gets a plain page.
 - Notebook: `src/content/blog/*.md`. Properties: title, summary, date, optional updated date, draft, type (`Note`, `Article`, `Experiment`) and tags. The default is **draft**; set `draft: false` to publish. Drafts are excluded from pages, RSS and the sitemap.
 - Profile and social links: `src/config.ts`.
-- Appearance: `src/styles/global.css`. The site is drawn as a notebook on a desk; the doodles are in `src/components/`. Fraunces, Shantell Sans and Paper Mono are served locally under their included SIL OFL licences.
+- Appearance: `src/styles/global.css`. The site is drawn as a notebook on a desk; the doodles are in `src/components/`. Fraunces, Caveat and Paper Mono are served locally under their included SIL OFL licences.
 
 The original Hello, world article is retained as a draft because it had been removed from the Notion notebook. The public portfolio uses English only.
 

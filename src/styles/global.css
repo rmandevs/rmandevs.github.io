@@ -1,5 +1,5 @@
 /* A notebook on a desk. Red cover, grid paper, pen doodles.
-   Fraunces for titles, Shantell Sans for handwriting, Paper Mono for the small print. */
+   Fraunces for titles, Caveat for pen notes, Paper Mono for the small print. */
 @font-face {
   font-family: Paper Mono;
   src: url("/fonts/PaperMono-Regular.woff2") format("woff2");
@@ -22,10 +22,10 @@
   font-display: swap;
 }
 @font-face {
-  font-family: Shantell Sans;
-  src: url("/fonts/ShantellSans-Variable.woff2") format("woff2");
+  font-family: Caveat;
+  src: url("/fonts/Caveat-Variable.woff2") format("woff2");
   font-style: normal;
-  font-weight: 300 800;
+  font-weight: 400 700;
   font-display: swap;
 }
 
@@ -49,7 +49,7 @@
   --sticky-ink: #3a3214;
   --shadow: rgb(43 38 35 / 0.9);
   --serif: Fraunces, Georgia, serif;
-  --hand: Shantell Sans, "Comic Sans MS", cursive;
+  --hand: Caveat, "Segoe Script", cursive;
   --mono: Paper Mono, ui-monospace, monospace;
   font-family: var(--mono);
   font-synthesis: none;
@@ -150,7 +150,7 @@ h2,
 h3 {
   font-family: var(--serif);
   font-weight: 560;
-  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-variation-settings: "SOFT" 30, "WONK" 0;
   letter-spacing: -0.02em;
 }
 ul,
@@ -172,7 +172,6 @@ mark {
 }
 .hand {
   font-family: var(--hand);
-  font-variation-settings: "INFM" 60, "BNCE" 12, "SPAC" 0;
   font-weight: 500;
 }
 .doodle {
@@ -226,15 +225,6 @@ mark {
   top: 780px;
   transform: rotate(24deg);
 }
-.dd-star {
-  left: -96px;
-  top: 190px;
-}
-.dd-star2 {
-  left: -58px;
-  top: 236px;
-  opacity: 0.6;
-}
 @media (min-width: 1380px) {
   .desk-doodles {
     display: block;
@@ -260,8 +250,7 @@ mark {
   gap: clamp(18px, 4vw, 42px);
   margin-inline: auto;
   font-family: var(--hand);
-  font-variation-settings: "INFM" 70, "BNCE" 20;
-  font-size: 17px;
+  font-size: 22px;
   font-weight: 500;
 }
 .topnav a {
@@ -363,9 +352,9 @@ mark {
   padding: 8px 0 30px;
 }
 .hero-hi {
-  font-size: 22px;
+  font-size: 28px;
   color: var(--red);
-  transform: rotate(-3deg);
+  transform: rotate(-2deg);
   transform-origin: left bottom;
   width: fit-content;
 }
@@ -374,10 +363,10 @@ mark {
   width: fit-content;
   margin: 2px 0 26px;
   font-size: clamp(60px, 9.4vw, 112px);
-  font-weight: 620;
+  font-weight: 540;
   line-height: 0.98;
   letter-spacing: -0.045em;
-  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-variation-settings: "SOFT" 30, "WONK" 0, "opsz" 144;
 }
 .title-period {
   color: var(--red);
@@ -390,7 +379,7 @@ mark {
   height: 16px;
   fill: none;
   stroke: var(--red);
-  stroke-width: 4;
+  stroke-width: 2.5;
   stroke-linecap: round;
 }
 .hero-role {
@@ -400,13 +389,13 @@ mark {
   color: var(--muted);
 }
 .hero-line {
-  margin: 14px 0 22px;
-  font-family: var(--hand);
-  font-variation-settings: "INFM" 80, "BNCE" 30;
-  font-size: clamp(26px, 3.4vw, 36px);
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--red);
+  margin: 16px 0 24px;
+  font-family: var(--serif);
+  font-variation-settings: "SOFT" 30, "WONK" 0;
+  font-size: clamp(24px, 3vw, 31px);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
 }
 .handle {
   display: inline-flex;
@@ -453,7 +442,7 @@ mark {
   position: absolute;
   right: 4%;
   bottom: -6px;
-  font-size: 15px;
+  font-size: 20px;
   color: var(--muted);
   transform: rotate(-4deg);
 }
@@ -478,7 +467,7 @@ mark {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 16px;
+  font-size: 21px;
   color: var(--red);
   transform: rotate(-2deg);
   margin-bottom: 2px;
@@ -490,7 +479,7 @@ mark {
   display: inline-flex;
   gap: 8px;
   margin-top: 26px;
-  font-size: 17px;
+  font-size: 22px;
   color: var(--red);
   border-bottom: 2px solid transparent;
 }
@@ -506,8 +495,7 @@ mark {
   gap: 4px 6px;
   margin: -6px 0 26px;
   font-family: var(--hand);
-  font-variation-settings: "INFM" 60, "BNCE" 12;
-  font-size: 16px;
+  font-size: 21px;
 }
 .filter-bar button {
   padding: 5px 15px 6px;
@@ -543,24 +531,24 @@ mark {
   height: 100%;
   padding: 22px 22px 18px;
   background: var(--card);
-  border: 2px solid var(--ink);
-  border-radius: 5px 14px 6px 12px;
-  box-shadow: 5px 6px 0 var(--shadow);
-  transform: rotate(var(--tilt, -1deg));
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 3px 4px 0 var(--shadow);
+  transform: rotate(var(--tilt, -0.5deg));
   transition:
     transform 0.2s,
     box-shadow 0.2s;
 }
 .card-grid > li:nth-child(2n) .card {
-  --tilt: 0.9deg;
+  --tilt: 0.4deg;
 }
 .card-grid > li:nth-child(3n) .card {
-  --tilt: -0.5deg;
+  --tilt: -0.2deg;
 }
 .card:hover,
 .card:focus-visible {
   transform: rotate(0) translate(-2px, -3px);
-  box-shadow: 8px 10px 0 var(--red);
+  box-shadow: 5px 7px 0 var(--red);
 }
 .tape {
   position: absolute;
@@ -570,11 +558,11 @@ mark {
   height: 25px;
   margin-left: -46px;
   background: var(--tape);
-  transform: rotate(-3deg);
+  transform: rotate(-1.5deg);
   clip-path: polygon(0 12%, 4% 0, 8% 14%, 12% 0, 100% 0, 96% 14%, 100% 28%, 96% 42%, 100% 56%, 96% 70%, 100% 84%, 97% 100%, 0 100%, 4% 86%, 0 72%, 4% 58%, 0 44%, 4% 30%);
 }
 .card-grid > li:nth-child(2n) .tape {
-  transform: rotate(4deg);
+  transform: rotate(2deg);
 }
 .card-top {
   display: flex;
@@ -583,12 +571,13 @@ mark {
   color: var(--red);
 }
 .card-kind {
-  font-size: 15px;
+  font-size: 20px;
   padding-top: 2px;
 }
 .card h3 {
   margin: -6px 0 8px;
-  font-size: 30px;
+  font-size: 28px;
+  font-weight: 500;
   line-height: 1.1;
   overflow-wrap: anywhere;
 }
@@ -616,7 +605,7 @@ mark {
 }
 .card-open {
   margin-left: auto;
-  font-size: 15px;
+  font-size: 20px;
   color: var(--red);
 }
 .card-open span {
@@ -670,8 +659,8 @@ mark {
   border-radius: 99px;
   color: var(--red);
   font-family: var(--hand);
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 17px;
+  line-height: 1.3;
 }
 .tags {
   display: flex;
@@ -698,8 +687,7 @@ mark {
 .sticky h2,
 .sticky h3 {
   font-family: var(--hand);
-  font-variation-settings: "INFM" 80, "BNCE" 30;
-  font-size: 23px;
+  font-size: 28px;
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.25;
@@ -707,7 +695,8 @@ mark {
 }
 .sticky p {
   font-family: var(--hand);
-  font-size: 16px;
+  font-size: 21px;
+  line-height: 1.3;
 }
 
 /* About */
@@ -719,7 +708,7 @@ mark {
 }
 .about-lead {
   font-family: var(--serif);
-  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-variation-settings: "SOFT" 30, "WONK" 0;
   font-size: clamp(24px, 3.2vw, 32px);
   line-height: 1.32;
   letter-spacing: -0.02em;
@@ -760,8 +749,7 @@ mark {
 }
 .footer-note {
   font-family: var(--hand);
-  font-variation-settings: "INFM" 70, "BNCE" 20;
-  font-size: 15px;
+  font-size: 20px;
 }
 .site-footer nav {
   display: flex;
@@ -783,7 +771,7 @@ mark {
 .back-link {
   display: inline-block;
   margin: -24px 0 40px;
-  font-size: 16px;
+  font-size: 21px;
   color: var(--red);
   border-bottom: 2px solid transparent;
 }
@@ -807,7 +795,7 @@ mark {
   min-width: 0;
 }
 .eyebrow {
-  font-size: 17px;
+  font-size: 23px;
   color: var(--red);
 }
 .sheet h1 {
@@ -815,7 +803,7 @@ mark {
   font-weight: 600;
   line-height: 1.04;
   letter-spacing: -0.035em;
-  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-variation-settings: "SOFT" 30, "WONK" 0, "opsz" 144;
   overflow-wrap: anywhere;
   margin: 6px 0 16px;
 }
@@ -871,7 +859,7 @@ mark {
 }
 .photo figcaption {
   padding: 8px 4px 2px;
-  font-size: 15px;
+  font-size: 20px;
   color: var(--muted);
   text-align: center;
 }
@@ -921,7 +909,7 @@ mark {
   width: 9px;
   height: 9px;
   border: 2px solid var(--red);
-  border-radius: 50% 45% 55% 40%;
+  border-radius: 50%;
 }
 .prose ol {
   list-style: decimal;
@@ -943,8 +931,8 @@ mark {
 }
 .prose pre {
   background: var(--card);
-  border: 2px solid var(--ink);
-  border-radius: 5px 12px 6px 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
   padding: 18px 20px;
   overflow-x: auto;
   font-size: 13px;
@@ -992,8 +980,8 @@ mark {
   gap: 14px;
   align-items: center;
   padding: 11px 20px 12px;
-  border: 2px solid var(--ink);
-  border-radius: 5px 12px 6px 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
   background: var(--cover);
   color: #fff;
   font-size: 13.500px;
@@ -1017,7 +1005,7 @@ mark {
 }
 .updated-date {
   margin-top: 36px;
-  font-size: 15px;
+  font-size: 20px;
   color: var(--muted);
 }
 .lost {
@@ -1071,7 +1059,7 @@ mark {
     gap: 10px;
   }
   .topnav {
-    font-size: 16px;
+    font-size: 21px;
   }
   .notebook {
     padding: 8px;
@@ -1091,7 +1079,7 @@ mark {
     margin-top: 60px;
   }
   .side-note {
-    font-size: 14px;
+    font-size: 19px;
   }
   .side-note svg {
     display: none;
