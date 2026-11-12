@@ -1,11 +1,16 @@
 ---
 import '../styles/global.css';
-import Icon from '../components/Icon.astro';
+import Doodle from '../components/Doodle.astro';
 import { site } from '../config';
-interface Props { title?: string; description?: string; }
-const { title, description = site.description } = Astro.props;
+interface Props { title?: string; description?: string; tab?: 'projects' | 'notebook' | 'about'; }
+const { title, description = site.description, tab } = Astro.props;
 const pageTitle = title ? `${title} — ${site.name}` : `${site.name} / ${site.handle}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const links = [
+  { key: 'projects', href: '/#projects', label: 'projects' },
+  { key: 'notebook', href: '/blog/', label: 'notebook' },
+  { key: 'about', href: '/#about', label: 'about' },
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -13,11 +18,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" type="application/rss+xml" title="Armando — Notebook" href="/rss.xml" />
-    <link rel="preload" href="/fonts/PaperMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Fraunces-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ShantellSans-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
@@ -32,12 +38,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <div class="site-shell">
-      <header class="utility-bar">
-        <button class="theme-toggle" hidden type="button" aria-label="Switch to light theme"><Icon name="sun" /></button>
+    <!-- The shaky pen line used by every doodle. -->
+    <svg class="defs" width="0" height="0" aria-hidden="true"><filter id="wobble" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4" /><feDisplacementMap in="SourceGraphic" scale="2.4" /></filter></svg>
+    <div class="desk">
+      <div class="desk-doodles" aria-hidden="true">
+        <Doodle name="pencil" size={92} class="dd dd-pencil" />
+        <Doodle name="ring" size={104} class="dd dd-ring" />
+        <Doodle name="clip" size={64} class="dd dd-clip" />
+        <Doodle name="star" size={34} class="dd dd-star" />
+        <Doodle name="star" size={20} class="dd dd-star2" />
+      </div>
+      <header class="topbar">
+        <a class="home-mark" href="/" aria-label="Armando, home"><Doodle name="mark" size={34} /></a>
+        <nav class="topnav" aria-label="Main">
+          {links.map(link => <a href={link.href} aria-current={tab === link.key ? 'page' : undefined}>{link.label}</a>)}
+        </nav>
+        <button class="theme-toggle" hidden type="button" aria-label="Switch theme"><Doodle name="moon" size={26} class="icon-moon" /><Doodle name="sun" size={26} class="icon-sun" /></button>
       </header>
-      <main id="main"><slot /></main>
+      <div class="notebook">
+        <div class="rings" aria-hidden="true"></div>
+        <main id="main" class="page"><slot /></main>
+        <div class="ribbon" aria-hidden="true"></div>
+      </div>
       <footer class="site-footer">
+        <p class="footer-note">made with a pen, a terminal and too much coffee</p>
         <nav aria-label="Elsewhere">
           <a href={site.github}>GitHub <span aria-hidden="true">↗</span></a>
           {site.x && <a href={site.x}>X <span aria-hidden="true">↗</span></a>}
@@ -49,12 +73,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <script>
       const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
       if (toggle) {
-        const update = () => toggle.setAttribute('aria-label', `Switch to ${document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'} theme`);
+        const root = document.documentElement;
+        const current = () => root.dataset.theme ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const update = () => toggle.setAttribute('aria-label', `Switch to ${current() === 'light' ? 'night' : 'day'} paper`);
         toggle.hidden = false;
         update();
         toggle.addEventListener('click', () => {
-          const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-          document.documentElement.dataset.theme = next;
+          const next = current() === 'light' ? 'dark' : 'light';
+          root.dataset.theme = next;
           try { localStorage.setItem('theme', next); } catch {}
           update();
         });

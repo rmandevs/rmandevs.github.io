@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import Doodle from '../../components/Doodle.astro';
 import { getProjects, dateLabel } from '../../lib/content';
 export async function getStaticPaths() {
   return (await getProjects()).map(project => ({ params: { id: project.id }, props: { project } }));
@@ -9,16 +10,21 @@ export async function getStaticPaths() {
 interface Props { project: CollectionEntry<'projects'>; }
 const { project } = Astro.props;
 const { Content } = await render(project);
+const { data } = project;
 ---
-<Layout title={project.data.title} description={project.data.summary}>
-  <article class="article-page">
-    <a class="back-link" href="/#projects">← Back to projects</a>
-    <header class="article-header"><p class="eyebrow">{project.data.category}</p><h1>{project.data.title}</h1><p class="article-summary">{project.data.summary}</p></header>
-    <dl class="property-list"><div><dt>Language</dt><dd>{project.data.language}</dd></div><div><dt>License</dt><dd>{project.data.license}</dd></div><div><dt>Published</dt><dd><time datetime={project.data.date.toISOString()}>{dateLabel(project.data.date)}</time></dd></div></dl>
+<Layout title={data.title} description={data.summary} tab="projects">
+  <article class="sheet">
+    <a class="hand back-link" href="/#projects">← back to projects</a>
+    <header class="sheet-header with-doodle">
+      <div><p class="hand eyebrow">{data.category}</p><h1>{data.title}</h1><p class="sheet-summary">{data.summary}</p></div>
+      <Doodle name={project.id} size={120} />
+    </header>
+    <dl class="stamps"><div><dt>Language</dt><dd>{data.language}</dd></div><div><dt>License</dt><dd>{data.license}</dd></div><div><dt>Published</dt><dd><time datetime={data.date.toISOString()}>{dateLabel(data.date)}</time></dd></div></dl>
+    {data.image && <figure class="photo"><span class="tape" aria-hidden="true"></span><img src={data.image} alt={data.imageAlt ?? ''} width={data.imageWidth} height={data.imageHeight} loading="lazy" decoding="async" />{data.imageCaption && <figcaption class="hand">{data.imageCaption}</figcaption>}</figure>}
     <div class="prose"><Content /></div>
     <div class="project-links">
-      {project.data.website && <a class="source-link" href={project.data.website}>{new URL(project.data.website).hostname} <span aria-hidden="true">↗</span></a>}
-      {project.data.repo && <a class="source-link" href={`https://github.com/${project.data.repo}`}>View on GitHub <span aria-hidden="true">↗</span></a>}
+      {data.website && <a class="button" href={data.website}>{new URL(data.website).hostname + new URL(data.website).pathname.replace(/\/$/, '')} <span aria-hidden="true">↗</span></a>}
+      {data.repo && <a class="button ghost" href={`https://github.com/${data.repo}`}>View on GitHub <span aria-hidden="true">↗</span></a>}
     </div>
   </article>
 </Layout>

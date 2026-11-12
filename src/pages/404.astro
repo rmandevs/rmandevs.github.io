@@ -1,4 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Doodle from '../components/Doodle.astro';
 ---
-<Layout title="Page not found"><div class="article-page"><p class="eyebrow">404 / off the grid</p><h1>This page wandered off.</h1><p class="article-summary">Let’s get you back to the good stuff.</p><a class="source-link" href="/">Back home →</a></div></Layout>
+<Layout title="Page not found">
+  <div class="sheet lost">
+    <Doodle name="page" size={96} />
+    <p class="hand eyebrow">404 / torn out</p>
+    <h1>This page wandered off.</h1>
+    <p class="sheet-summary">Let’s get you back to the good stuff.</p>
+    <a class="button" href="/">Back home <span aria-hidden="true">→</span></a>
+  </div>
+</Layout>

@@ -61,6 +61,27 @@ test("the launched projects have content pages with their links", async () => {
       ],
     },
     { slug: "lofisons", links: ["https://lofisons.com"] },
+    {
+      slug: "comfytosh",
+      links: [
+        "https://rmandevs.github.io/comfytosh/",
+        "https://github.com/rmandevs/comfytosh",
+      ],
+    },
+    {
+      slug: "lazy-c7n",
+      links: [
+        "https://rmandevs.github.io/lazy-c7n/",
+        "https://github.com/rmandevs/lazy-c7n",
+      ],
+    },
+    {
+      slug: "mootion",
+      links: [
+        "https://rmandevs.github.io/mootion/",
+        "https://github.com/rmandevs/mootion",
+      ],
+    },
   ];
   for (const { slug, links } of projects) {
     const html = await readFile(
@@ -72,9 +93,7 @@ test("the launched projects have content pages with their links", async () => {
 });
 test("projects that are not launched yet stay out of the site", async () => {
   for (const slug of [
-    "comfytosh",
     "isometric-illustrations",
-    "lazy-c7n",
     "pnpm-supply-chain-hardening-skill",
     "vigia",
   ]) {
