@@ -10,11 +10,15 @@ interface Props { post: CollectionEntry<'blog'>; }
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
-<Layout title={post.data.title} description={post.data.summary} tab="notebook">
-  <article class="sheet">
-    <a class="hand back-link" href="/blog/">← back to the notebook</a>
-    <header class="sheet-header"><p class="hand eyebrow">{post.data.type} · <time datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time></p><h1>{post.data.title}</h1><p class="sheet-summary">{post.data.summary}</p><div class="tags">{post.data.tags.map(tag => <span class="tag">{tag}</span>)}</div></header>
+<Layout title={post.data.title} description={post.data.summary}>
+  <article>
+    <header class="head">
+      <h1>{post.data.title}</h1>
+      <p class="muted">{post.data.summary}</p>
+      <p class="facts"><time datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time> · {[post.data.type, ...post.data.tags].join(' · ')}</p>
+    </header>
     <div class="prose"><Content /></div>
-    {post.data.updated && <p class="hand updated-date">updated {dateLabel(post.data.updated)}</p>}
+    {post.data.updated && <p class="facts">Updated {dateLabel(post.data.updated)}</p>}
+    <p class="links"><a class="back" href="/blog/">← All notes</a></p>
   </article>
 </Layout>

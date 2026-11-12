@@ -11,7 +11,7 @@ image: "/projects/lazy-c7n.webp"
 imageWidth: 1674
 imageHeight: 504
 imageAlt: "The lazy-c7n terminal UI: tabs for Policies, Runs, Resources, Schema and Jobs, with a green DRY badge in the status line"
-imageCaption: "the Policies screen today"
+imageCaption: "The Policies screen today"
 ---
 lazy-c7n is a terminal UI for [Cloud Custodian](https://cloudcustodian.io/), in the spirit of lazygit and lazydocker. The goal is to turn the loop around c7n policies (validate, dry-run, run, read the results) into something you drive with a few keys.
 

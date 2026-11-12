@@ -1,99 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Doodle from '../components/Doodle.astro';
-import DeskScene from '../components/DeskScene.astro';
-import PaperStack from '../components/PaperStack.astro';
 import { site } from '../config';
 import { getProjects, getPosts, dateLabel } from '../lib/content';
 const projects = await getProjects();
 const posts = await getPosts();
-const categoryLabels: Record<string, string> = { Tool: 'Tools', Theme: 'Themes', Layout: 'Layouts', 'Agent skill': 'Skills', 'Design system': 'Design', Studio: 'Studio' };
-const categories = [...new Set(projects.map(project => project.data.category))];
-const filters = [{ key: 'all', name: 'All' }, ...categories.map(key => ({ key, name: categoryLabels[key] ?? key }))];
-// The notebook lies open: the left page has the title, so it takes fewer projects.
-const split = Math.floor(projects.length / 2);
-const pages = [projects.slice(0, split), projects.slice(split)];
 ---
-<Layout bare>
-  <PaperStack class="hero-stack">
-    <section class="hero" aria-labelledby="name">
-      <div class="hero-text">
-        <p class="hand hero-hi">hi, I'm</p>
-        <h1 id="name">Armando<span class="title-period">.</span>
-          <svg class="scribble doodle" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9c34-7 62 5 96-1s66-6 100 0 60 3 98-3" /></svg>
-        </h1>
-        <p class="hero-role">Independent developer &amp; curious builder</p>
-        <p class="hero-about">I build small tools, agent stuff and music products, and I like giving them a bit of <span class="nowrap"><span class="pick">personality</span>.</span></p>
-        <p class="hero-links">
-          <span>Creator of <a href="https://usepegboard.dev">Pegboard <span aria-hidden="true">↗</span></a></span>
-          <span>Founder of <a href={site.lofisons}>lofisons <span aria-hidden="true">↗</span></a></span>
-          <a href={site.github}>{site.handle} <span aria-hidden="true">↗</span></a>
-        </p>
-      </div>
-      <div class="hero-art">
-        <DeskScene />
-        <p class="hand art-note" aria-hidden="true">my desk, more or less</p>
-      </div>
-    </section>
-    <a class="tape-link" href="#projects">See the projects <span aria-hidden="true">↓</span></a>
-  </PaperStack>
+<Layout home>
+  <p class="muted">Independent developer &amp; curious builder</p>
+  <p class="intro">I build small tools, agent stuff and music products, and I like giving them a bit of <span class="personality">personality</span>. Creator of <a href="https://usepegboard.dev">Pegboard</a> and founder of <a href={site.lofisons}>lofisons</a>.</p>
 
-  <section id="projects" class="book" aria-labelledby="projects-title">
-    <div class="spread">
-      {pages.map((page, index) => <div class:list={['leaf', index === 0 ? 'leaf-left' : 'leaf-right']}>
-        {index === 0 && <>
-          <div class="book-head"><h2 id="projects-title">Projects</h2><p class="hand side-note">things I made</p></div>
-          <div class="filter-bar" role="group" aria-label="Filter projects" hidden>
-            {filters.map(filter => <button type="button" data-filter={filter.key} aria-pressed={filter.key === 'all'}>{filter.name}</button>)}
-            <span class="filter-count" aria-live="polite">{projects.length} projects</span>
-          </div>
-        </>}
-        <ul class="entries">
-          {page.map(project => <li data-category={project.data.category}>
-            <a class="entry" href={`/projects/${project.id}/`}>
-              <Doodle name={project.id} size={52} />
-              <div class="entry-top"><h3>{project.data.title}</h3><span class="hand entry-kind">{project.data.category}</span></div>
-              <p>{project.data.summary}</p>
-              <div class="entry-meta"><span>{project.data.language}</span><span>{project.data.license}</span><span class="hand entry-open">open <span aria-hidden="true">→</span></span></div>
-            </a>
-          </li>)}
-        </ul>
-        {index === 1 && <a class="hand more-link" href={site.github}>all repositories <span aria-hidden="true">↗</span></a>}
-        <span class="leaf-no" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-      </div>)}
-    </div>
-    <div class="ribbon" aria-hidden="true"></div>
+  <section id="projects" aria-labelledby="projects-title">
+    <h2 id="projects-title" class="label">Projects</h2>
+    <ul class="rows">
+      {projects.map(project => <li>
+        <a href={`/projects/${project.id}/`}><span>{project.data.title}</span><span class="what">{project.data.summary}</span><span class="meta">{project.data.category}</span></a>
+      </li>)}
+    </ul>
+    <a class="more" href={site.github}>All repositories ↗</a>
   </section>
 
-  <section id="notebook" class="shelf" aria-labelledby="notebook-title">
-    <a class="closed-book" href="/blog/" aria-label="Open the notebook">
-      <span class="cb-pages hand" aria-hidden="true">open →</span>
-      <span class="cb-cover" aria-hidden="true">
-        <span class="cb-band"></span>
-        <span class="cb-label"><b>Notebook</b><i>random thoughts</i><small>Vol. 01 · {site.handle}</small></span>
-      </span>
-    </a>
-    <div class="shelf-side">
-      <h2 id="notebook-title">Notebook</h2>
-      <p class="hand shelf-note">random thoughts, still closed</p>
-      {posts.length ? <ol class="mat-list">{posts.slice(0, 3).map(post => <li>
-        <a href={`/blog/${post.id}/`}><time datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time><h3>{post.data.title}</h3><p>{post.data.summary}</p></a>
-      </li>)}</ol> : <div class="sticky"><h3>A little room for ideas.</h3><p>The first notes are on their way.</p></div>}
-      <a class="hand more-link" href="/blog/">open the notebook <span aria-hidden="true">→</span></a>
-    </div>
+  <section id="notebook" aria-labelledby="notebook-title">
+    <h2 id="notebook-title" class="label">Notebook</h2>
+    {posts.length ? <><ol class="rows notes">{posts.slice(0, 5).map(post => <li>
+      <a href={`/blog/${post.id}/`}><time class="meta" datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time><span>{post.data.title}</span></a>
+    </li>)}</ol><a class="more" href="/blog/">All notes →</a></> : <p class="muted">Nothing yet. The first notes are on their way.</p>}
   </section>
 </Layout>
-<script>
-  const filters = document.querySelector<HTMLElement>('.filter-bar');
-  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-  const rows = document.querySelectorAll<HTMLLIElement>('.entries > li');
-  const count = document.querySelector('.filter-count');
-  if (filters) filters.hidden = false;
-  buttons.forEach(button => button.addEventListener('click', () => {
-    const category = button.dataset.filter;
-    buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
-    let visible = 0;
-    rows.forEach(row => { row.hidden = category !== 'all' && row.dataset.category !== category; if (!row.hidden) visible++; });
-    if (count) count.textContent = `${visible} ${visible === 1 ? 'project' : 'projects'}`;
-  }));
-</script>

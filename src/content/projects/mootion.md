@@ -11,7 +11,7 @@ image: "/projects/mootion.webp"
 imageWidth: 1600
 imageHeight: 1000
 imageAlt: "Mootion in Herdr: a sidebar with spaces and teammates, and a terminal shown as a page with a title and properties"
-imageCaption: "a terminal, as a page"
+imageCaption: "A terminal, as a page"
 ---
 Mootion is a layout for [Herdr](https://herdr.dev) that makes a room full of terminals feel like a workspace of pages.
 
